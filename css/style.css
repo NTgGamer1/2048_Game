@@ -1,12 +1,12 @@
 :root {
-  --bg: #f0ece3;
-  --panel: #faf7f0;
-  --text: #3f352c;
+  --bg: #eae6de;
+  --panel: #f5efe4;
+  --text: #23201d;
   --muted: #8f7f70;
   --board: #bbada0;
-  --cell: rgba(238, 228, 218, 0.35);
+  --cell: rgba(219, 206, 194, 0.35);
   --tile-light: #eee4da;
-  --tile-dark: #f2b179;
+  --tile-dark: #eda769;
   --shadow: 0 12px 30px rgba(63, 53, 44, 0.18);
   --gap: clamp(8px, 2vw, 12px);
   --radius: 18px;
