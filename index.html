@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2048 | Vanilla JS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div>
+        <h1 class="title">2048</h1>
+        <p class="subtitle">Join tiles to reach <strong>2048</strong>.</p>
+      </div>
+
+      <div class="score-panel" aria-label="Score panel">
+        <div class="score-card">
+          <span>Score</span>
+          <strong id="score">0</strong>
+        </div>
+        <div class="score-card">
+          <span>Best</span>
+          <strong id="best-score">0</strong>
+        </div>
+      </div>
+    </header>
+
+    <section class="controls" aria-label="Game controls">
+      <p>Use arrow keys to move tiles.</p>
+      <button id="restart-btn" class="btn" type="button">New Game</button>
+    </section>
+
+    <section class="board-wrapper" aria-label="2048 game board">
+      <div class="board" id="board">
+        <div class="board-bg" aria-hidden="true">
+          <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+          <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+          <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+          <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+        </div>
+        <div class="tile-layer" id="tile-layer" aria-live="polite"></div>
+
+        <div id="game-over" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="game-over-title">
+          <h2 id="game-over-title">Game Over</h2>
+          <p>No more valid moves. Try again?</p>
+          <button id="overlay-restart-btn" class="btn" type="button">Play Again</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
