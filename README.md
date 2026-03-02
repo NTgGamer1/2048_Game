@@ -53,9 +53,9 @@ python3 -m http.server 5500
 
 Add your own captures before publishing:
 
-```md
-![Gameplay Screenshot](./Assets/Screenshot%202026-03-02%20at%2017.56.19.png)
-```
+
+![Gameplay Screenshot](/Assets/Screenshot%202026-03-02%20at%2017.56.19.png)
+
 
 ## Tech Stack / Why I Built This
 
