@@ -81,6 +81,8 @@
       this.board = createEmptyBoard(this.size);
       this.score = 0;
       this.gameOver = false;
+      this.hasWon = false;
+      this.showWinPopup = false;
       this.newTiles = new Set();
       this.mergedTiles = new Set();
     }
@@ -163,10 +165,29 @@
       return false;
     }
 
+    hasWinningTile() {
+      for (let row = 0; row < this.size; row += 1) {
+        for (let col = 0; col < this.size; col += 1) {
+          if (this.board[row][col] >= 2048) {
+            return true;
+          }
+        }
+      }
+
+      return false;
+    }
+
+    dismissWinPopup() {
+      this.showWinPopup = false;
+      this.onStateChange();
+    }
+
     startNewGame() {
       this.board = createEmptyBoard(this.size);
       this.score = 0;
       this.gameOver = false;
+      this.hasWon = false;
+      this.showWinPopup = false;
       this.newTiles.clear();
       this.mergedTiles.clear();
 
@@ -181,7 +202,7 @@
     }
 
     move(direction) {
-      if (this.gameOver) {
+      if (this.gameOver || this.showWinPopup) {
         return false;
       }
 
@@ -219,6 +240,11 @@
         this.newTiles.add(this.keyFor(spawned.row, spawned.col));
       }
 
+      if (!this.hasWon && this.hasWinningTile()) {
+        this.hasWon = true;
+        this.showWinPopup = true;
+      }
+
       this.gameOver = !this.hasAvailableMoves();
       this.onStateChange();
 
@@ -232,7 +258,10 @@
     const tileLayer = document.getElementById("tile-layer");
     const restartBtn = document.getElementById("restart-btn");
     const overlayRestartBtn = document.getElementById("overlay-restart-btn");
-    const gameOverOverlay = document.getElementById("game-over");
+    const overlayContinueBtn = document.getElementById("overlay-continue-btn");
+    const statusOverlay = document.getElementById("status-overlay");
+    const overlayTitleEl = document.getElementById("overlay-title");
+    const overlayMessageEl = document.getElementById("overlay-message");
     const boardEl = document.getElementById("board");
 
     const directionsByKey = {
@@ -268,7 +297,20 @@
     function render() {
       scoreEl.textContent = String(game.score);
       bestScoreEl.textContent = String(bestScore);
-      gameOverOverlay.classList.toggle("hidden", !game.gameOver);
+
+      if (game.gameOver) {
+        overlayTitleEl.textContent = "Game Over";
+        overlayMessageEl.textContent = "No more valid moves. Try again?";
+        overlayContinueBtn.classList.add("hidden");
+        statusOverlay.classList.remove("hidden");
+      } else if (game.showWinPopup) {
+        overlayTitleEl.textContent = "You Win!";
+        overlayMessageEl.textContent = "You reached 2048. Continue playing or start a new game.";
+        overlayContinueBtn.classList.remove("hidden");
+        statusOverlay.classList.remove("hidden");
+      } else {
+        statusOverlay.classList.add("hidden");
+      }
 
       tileLayer.innerHTML = "";
 
@@ -304,6 +346,10 @@
     }
 
     function handleMove(direction) {
+      if (game.gameOver || game.showWinPopup) {
+        return;
+      }
+
       const moved = game.move(direction);
 
       if (!moved) {
@@ -362,6 +408,7 @@
     );
 
     restartBtn.addEventListener("click", () => game.startNewGame());
+    overlayContinueBtn.addEventListener("click", () => game.dismissWinPopup());
     overlayRestartBtn.addEventListener("click", () => game.startNewGame());
 
     game.startNewGame();

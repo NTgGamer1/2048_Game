@@ -27,7 +27,7 @@ This project includes:
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/<your-username>/2048_Game.git
+git clone https://github.com/ntggamer1/2048_Game.git
 cd 2048_Game
 ```
 
@@ -54,16 +54,7 @@ python3 -m http.server 5500
 Add your own captures before publishing:
 
 ```md
-![Gameplay Screenshot](./assets/screenshot-1.png)
-![Demo GIF](./assets/demo.gif)
-```
-
-Suggested assets folder:
-
-```text
-assets/
-├── screenshot-1.png
-└── demo.gif
+![Gameplay Screenshot](./Assets/Screenshot%202026-03-02%20at%2017.56.19.png)
 ```
 
 ## Tech Stack / Why I Built This

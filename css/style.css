@@ -205,6 +205,16 @@ body {
   margin: 0 0 8px;
 }
 
+.overlay-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn-secondary {
+  background: #b39988;
+}
+
 .hidden {
   display: none;
 }

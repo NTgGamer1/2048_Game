@@ -44,10 +44,13 @@
         </div>
         <div class="tile-layer" id="tile-layer" aria-live="polite"></div>
 
-        <div id="game-over" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="game-over-title">
-          <h2 id="game-over-title">Game Over</h2>
-          <p>No more valid moves. Try again?</p>
-          <button id="overlay-restart-btn" class="btn" type="button">Play Again</button>
+        <div id="status-overlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="overlay-title">
+          <h2 id="overlay-title">Game Over</h2>
+          <p id="overlay-message">No more valid moves. Try again?</p>
+          <div class="overlay-actions">
+            <button id="overlay-continue-btn" class="btn btn-secondary hidden" type="button">Continue</button>
+            <button id="overlay-restart-btn" class="btn" type="button">New Game</button>
+          </div>
         </div>
       </div>
     </section>
